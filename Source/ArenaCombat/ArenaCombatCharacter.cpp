@@ -78,6 +78,14 @@ bool AArenaCombatCharacter::GetHasRifle()
 	return bHasRifle;
 }
 
+void AArenaCombatCharacter::StartAiming()
+{
+}
+
+void AArenaCombatCharacter::StopAiming()
+{
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -95,6 +103,10 @@ void AArenaCombatCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AArenaCombatCharacter::Look);
+
+		//Aiming
+		EnhancedInputComponent->BindAction(AimAction, ETriggerEvent::Started, this, &AArenaCombatCharacter::StartAiming);
+		EnhancedInputComponent->BindAction(AimAction, ETriggerEvent::Completed, this, &AArenaCombatCharacter::StopAiming);
 
 	}
 

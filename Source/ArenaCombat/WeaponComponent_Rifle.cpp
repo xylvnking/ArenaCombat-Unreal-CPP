@@ -131,6 +131,19 @@ void UWeaponComponent_Rifle::FireHitScan()
 			UGameplayStatics::SpawnDecalAtLocation(World, HitDecalMaterial, FVector(15.0f), Hit.Location, Hit.ImpactNormal.Rotation(), 10.0f);
 
 		}
+		if (FireSound != nullptr)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation());
+		}
+		//if (FireAnimation != nullptr)
+		//{
+		//	// Get the animation object for the arms mesh
+		//	UAnimInstance* AnimInstance = Character->GetMesh()->GetAnimInstance();
+		//	if (AnimInstance != nullptr)
+		//	{
+		//		AnimInstance->Montage_Play(FireAnimation, 1.f);
+		//	}
+		//}
 	}
 
 

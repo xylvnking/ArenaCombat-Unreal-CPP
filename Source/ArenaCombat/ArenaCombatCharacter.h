@@ -41,6 +41,10 @@ class AArenaCombatCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+	/** Look Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* AimAction;
+
 
 	
 
@@ -86,5 +90,11 @@ public:
 	/** Getter for the bool */
 	UFUNCTION(BlueprintCallable, Category = Weapon)
 		bool GetHasRifle();
+
+	UFUNCTION(BlueprintCallable, Category = Input)
+		void StartAiming();
+
+	UFUNCTION(BlueprintCallable, Category = Input)
+		void StopAiming();
 };
 
