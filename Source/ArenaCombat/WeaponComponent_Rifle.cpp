@@ -70,8 +70,10 @@ void UWeaponComponent_Rifle::AttachWeapon(AArenaCombatCharacter* TargetCharacter
 	// Attach the weapon to the First Person Character
 	FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
 
-	//AttachToComponent(Character->GetMesh1P(), AttachmentRules, FName(TEXT("GripPoint")));
 	AttachToComponent(Character->GetMesh(), AttachmentRules, FName(TEXT("GripPoint")));
+	//AttachToComponent(Character->GetMesh(), AttachmentRules, FName(TEXT("GripPoint")));
+	//AttachToComponent(Character->GetMesh(), AttachmentRules, FName(TEXT("weapon_r_muzzle")));
+	
 
 	// should check to see if they have this first?
 	Character->SetHasRifle(true);
@@ -117,33 +119,20 @@ void UWeaponComponent_Rifle::FireHitScan()
 		FVector TraceStart = CameraLocation;
 		FVector TraceEnd = TraceStart + CameraRotation.Vector() * 10000;
 		bool bHasHitSomething = World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, Params);
-
 		if (bHasHitSomething)
 		{
 
 			//const FDamageEvent;
-
+			if (!HitParticleFx) { return; }
 			UNiagaraComponent* NiagaraComp = UNiagaraFunctionLibrary::SpawnSystemAtLocation(World, HitParticleFx, Hit.Location, Hit.ImpactNormal.Rotation(), FVector(0.2f), true, true);
 			NiagaraComp->SetNiagaraVariableFloat(FString("StrengthCoef"), CoefStrength);
 
 			if (!HitDecalMaterial) { return; }
 			UGameplayStatics::SpawnDecalAtLocation(World, HitDecalMaterial, FVector(15.0f), Hit.Location, Hit.ImpactNormal.Rotation(), 10.0f);
 
-			if (IsValid(Hit.GetActor()))
-			{
-				UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
-				//Hit.GetActor()->TakeDamage(10.0f,);
-				//Hit.GetActor()->TakeDamage(AActor * DamageActor, float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser);
-				//Hit.GetActor()->TakeDamage(AActor * DamageActor, float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser);
-				UGameplayStatics::ApplyDamage(Hit.GetActor(), 10.0f, Character->GetController(), Character, NULL);
-				/*if (HitSound != nullptr)
-				{
-					UGameplayStatics::PlaySoundAtLocation(this, HitSound, Character->GetActorLocation());
-				}*/
-			}
-
 		}
 	}
+
 
 }
 
