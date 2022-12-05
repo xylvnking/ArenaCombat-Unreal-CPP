@@ -16,6 +16,8 @@
 
 AArenaCombatCharacter::AArenaCombatCharacter()
 {
+
+	bHasRifle = false;
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		
@@ -64,6 +66,16 @@ void AArenaCombatCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+}
+
+void AArenaCombatCharacter::SetHasRifle(bool bNewHasRifle)
+{
+	bHasRifle = bNewHasRifle;
+}
+
+bool AArenaCombatCharacter::GetHasRifle()
+{
+	return bHasRifle;
 }
 
 //////////////////////////////////////////////////////////////////////////

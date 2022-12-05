@@ -7,11 +7,15 @@
 #include "InputActionValue.h"
 #include "ArenaCombatCharacter.generated.h"
 
+//class USkeletalMeshComponent;
 
 UCLASS(config=Game)
 class AArenaCombatCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+	/*PROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		USkeletalMeshComponent* Mesh1P;*/
 
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -37,8 +41,16 @@ class AArenaCombatCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+
+	
+
+
 public:
 	AArenaCombatCharacter();
+
+	/** Bool for AnimBP to switch to another animation set */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Weapon)
+		bool bHasRifle;
 	
 
 protected:
@@ -62,5 +74,17 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	//USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
+
+
+public:
+	/** Setter to set the bool */
+	UFUNCTION(BlueprintCallable, Category = Weapon)
+		void SetHasRifle(bool bNewHasRifle);
+
+	/** Getter for the bool */
+	UFUNCTION(BlueprintCallable, Category = Weapon)
+		bool GetHasRifle();
 };
 
