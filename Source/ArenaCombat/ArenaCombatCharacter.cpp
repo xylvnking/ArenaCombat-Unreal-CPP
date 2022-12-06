@@ -51,6 +51,8 @@ AArenaCombatCharacter::AArenaCombatCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	CameraFOV = 170.0f;
 }
 
 void AArenaCombatCharacter::BeginPlay()
@@ -84,6 +86,13 @@ void AArenaCombatCharacter::StartAiming()
 
 void AArenaCombatCharacter::StopAiming()
 {
+}
+
+void AArenaCombatCharacter::SetCameraFOV(float NewFOV)
+{
+	FollowCamera->SetFieldOfView(NewFOV);
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////

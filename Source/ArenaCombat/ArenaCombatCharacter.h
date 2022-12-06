@@ -96,5 +96,11 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Input)
 		void StopAiming();
+
+	UPROPERTY(EditAnywhere)
+		float CameraFOV;
+
+	UFUNCTION(BlueprintCallable, Category = Input)
+		void SetCameraFOV(float NewFOV);
 };
 
