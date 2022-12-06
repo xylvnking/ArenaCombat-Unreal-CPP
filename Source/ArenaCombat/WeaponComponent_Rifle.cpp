@@ -130,6 +130,16 @@ void UWeaponComponent_Rifle::FireHitScan()
 			if (!HitDecalMaterial) { return; }
 			UGameplayStatics::SpawnDecalAtLocation(World, HitDecalMaterial, FVector(15.0f), Hit.Location, Hit.ImpactNormal.Rotation(), 10.0f);
 
+			if (IsValid(Hit.GetActor()))
+			{
+				UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
+				//Hit.GetActor()->TakeDamage(10.0f,);
+				//Hit.GetActor()->TakeDamage(AActor * DamageActor, float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser);
+				//Hit.GetActor()->TakeDamage(AActor * DamageActor, float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser);
+				UGameplayStatics::ApplyDamage(Hit.GetActor(), 50.0f, Character->GetController(), Character, NULL);
+				
+			}
+
 		}
 		if (FireSound != nullptr)
 		{

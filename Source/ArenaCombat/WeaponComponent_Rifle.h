@@ -32,6 +32,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		USoundBase* FireSound;
 
+
 	/** AnimMontage to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		UAnimMontage* FireAnimation;
@@ -58,6 +59,7 @@ public:
 	/** Make the weapon Fire a Projectile (renamed from default Fire() */
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
 		void FireProjectile();
+
 
 protected:
 	/** Ends gameplay for this component. */
