@@ -13,6 +13,20 @@ class AArenaCombatGameMode : public AGameModeBase
 
 public:
 	AArenaCombatGameMode();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+		int32 EnemiesAlive;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+		int32 CurrentWave;
+
+protected:
+	UFUNCTION(BlueprintCallable)
+		void SpawnEnemy();
+
+	//virtual void BeginPlay() override;
+
+
 };
 
 

@@ -13,3 +13,14 @@ AArenaCombatGameMode::AArenaCombatGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 }
+
+void AArenaCombatGameMode::SpawnEnemy()
+{
+}
+
+//void AArenaCombatGameMode::BeginPlay()
+//{
+//	Super::BeginPlay();
+//	UE_LOG(LogTemp, Log, TEXT("YEAAAH"));
+//
+//}
