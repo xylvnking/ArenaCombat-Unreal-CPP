@@ -26,6 +26,7 @@ UWeaponComponent_Rifle::UWeaponComponent_Rifle()
 
 	// this should be from the camera instead?
 	MuzzleOffset = FVector(100.0f, 0.0f, 10.0f);
+	FireSoundVolume = 1.0f;
 }
 
 void UWeaponComponent_Rifle::BeginPlay()
@@ -143,7 +144,7 @@ void UWeaponComponent_Rifle::FireHitScan()
 		}
 		if (FireSound != nullptr)
 		{
-			UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation());
+			UGameplayStatics::PlaySoundAtLocation(this, FireSound, Character->GetActorLocation(), FireSoundVolume);
 		}
 		//if (FireAnimation != nullptr)
 		//{
