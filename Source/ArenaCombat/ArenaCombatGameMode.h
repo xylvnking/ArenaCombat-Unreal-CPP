@@ -18,7 +18,7 @@ public:
 		int32 EnemiesAlive;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-		int32 EnemiesToSpawn;
+		int32 NumberOfEnemiesToSpawn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		int32 CurrentWave;
