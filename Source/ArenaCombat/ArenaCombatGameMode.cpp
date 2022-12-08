@@ -14,8 +14,9 @@ AArenaCombatGameMode::AArenaCombatGameMode()
 	}
 }
 
-void AArenaCombatGameMode::SpawnEnemy()
+void AArenaCombatGameMode::SpawnWave()
 {
+	SpawnWave2();
 }
 
 //void AArenaCombatGameMode::BeginPlay()

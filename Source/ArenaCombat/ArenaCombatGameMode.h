@@ -14,15 +14,21 @@ class AArenaCombatGameMode : public AGameModeBase
 public:
 	AArenaCombatGameMode();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		int32 EnemiesAlive;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		int32 CurrentWave;
 
-protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+		bool CanWaveSpawn;
+
 	UFUNCTION(BlueprintCallable)
-		void SpawnEnemy();
+		void SpawnWave();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void SpawnWave2();
+protected:
 
 	//virtual void BeginPlay() override;
 
