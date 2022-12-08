@@ -18,16 +18,19 @@ public:
 		int32 EnemiesAlive;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+		int32 EnemiesToSpawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		int32 CurrentWave;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		bool CanWaveSpawn;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintImplementableEvent)
 		void SpawnWave();
 
-	UFUNCTION(BlueprintImplementableEvent)
-		void SpawnWave2();
+	/*UFUNCTION(BlueprintImplementableEvent)
+		void SpawnWave2();*/
 protected:
 
 	//virtual void BeginPlay() override;

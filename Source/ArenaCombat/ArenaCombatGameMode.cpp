@@ -14,10 +14,10 @@ AArenaCombatGameMode::AArenaCombatGameMode()
 	}
 }
 
-void AArenaCombatGameMode::SpawnWave()
-{
-	SpawnWave2();
-}
+//void AArenaCombatGameMode::SpawnWave()
+//{
+//	SpawnWave2();
+//}
 
 //void AArenaCombatGameMode::BeginPlay()
 //{
