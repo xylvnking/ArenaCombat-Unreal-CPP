@@ -16,6 +16,7 @@
 #include "NiagaraComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
+
 #include "Engine/EngineTypes.h"
 
 UWeaponComponent_Rifle::UWeaponComponent_Rifle()
@@ -27,6 +28,7 @@ UWeaponComponent_Rifle::UWeaponComponent_Rifle()
 	// this should be from the camera instead?
 	MuzzleOffset = FVector(100.0f, 0.0f, 10.0f);
 	FireSoundVolume = 1.0f;
+
 }
 
 void UWeaponComponent_Rifle::BeginPlay()
@@ -41,7 +43,13 @@ void UWeaponComponent_Rifle::BeginPlay()
 
 	RecoilTimeline.AddInterpFloat(HorizontalCurve, XRecoilCurve);
 	RecoilTimeline.AddInterpFloat(VerticalCurve, YRecoilCurve);
+
+
 }
+
+
+
+
 
 void UWeaponComponent_Rifle::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
@@ -148,6 +156,32 @@ void UWeaponComponent_Rifle::FireHitScan()
 				//}
 				UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
 				UGameplayStatics::ApplyDamage(Hit.GetActor(), 50.0f, Character->GetController(), Character, NULL);
+				UE_LOG(LogTemp, Warning, TEXT("MyVector = %s"), *Hit.Location.ToString());
+				HitScanImpactLocation = Hit.Location;
+
+
+
+				//AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(ActorClass, Hit.Location, FRotator::ZeroRotator);
+				
+				
+				// i used this when i was trying to get chaos physics working
+				/*TArray<AActor*> ActorsToIgnore;
+				UGameplayStatics::ApplyRadialDamage(
+					World, 
+					200000.0f, 
+					Hit.Location, 
+					100.0f, 
+					UDamageType::StaticClass(),
+					ActorsToIgnore,
+					Character,
+					Character->GetController(),
+					true
+				);*/
+
+
+
+				
+				
 				
 			}
 
@@ -169,6 +203,7 @@ void UWeaponComponent_Rifle::FireHitScan()
 
 
 }
+
 
 void UWeaponComponent_Rifle::GetLookData(const FInputActionValue& Value)
 {

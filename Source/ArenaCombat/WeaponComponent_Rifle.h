@@ -64,10 +64,20 @@ public:
 		void FireProjectile();
 
 
+	//THIS IS HOW YOU GET A VALUE FROM C++ INTO BLUEPRINTS WITHOUT MAKING IT EDITABLE
+	UPROPERTY(BlueprintReadOnly, Category = "Impact")
+		FVector HitScanImpactLocation;
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void GiveANumber();
+
+
 protected:
 	/** Ends gameplay for this component. */
 	UFUNCTION()
 		virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	
 
 private:
 	/** The Character holding this weapon*/
@@ -99,6 +109,7 @@ public: // everything below this is what I added
 	// does this need to be public?
 	FTimeline RecoilTimeline;
 
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -116,6 +127,8 @@ protected:
 	int32 DefaultAmmo = 30;
 
 	FRotator RotationBeforeFiring;
+
+	
 
 	UFUNCTION()
 		void StartHorizontalRecoil(float Value);
