@@ -122,7 +122,7 @@ void UWeaponComponent_Rifle::FireHitScan()
 		bool bHasHitSomething = World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, Params);
 		if (bHasHitSomething)
 		{
-
+			AActor* HitActor = Hit.GetActor();
 			//const FDamageEvent;
 			if (!HitParticleFx) { return; }
 			UNiagaraComponent* NiagaraComp = UNiagaraFunctionLibrary::SpawnSystemAtLocation(World, HitParticleFx, Hit.Location, Hit.ImpactNormal.Rotation(), FVector(0.2f), true, true);
@@ -131,12 +131,22 @@ void UWeaponComponent_Rifle::FireHitScan()
 			if (!HitDecalMaterial) { return; }
 			UGameplayStatics::SpawnDecalAtLocation(World, HitDecalMaterial, FVector(15.0f), Hit.Location, Hit.ImpactNormal.Rotation(), 10.0f);
 
-			if (IsValid(Hit.GetActor()))
+			//if (IsValid(Hit.GetActor()))
+			if (IsValid(HitActor))
 			{
+				//AActor* HitActor = Hit.GetActor();
+				if (HitActor->IsA(ACharacter::StaticClass()))
+				{
+					UE_LOG(LogTemp, Log, TEXT("Trace hit AN ACTUAL ACTOR"));
+					// The trace hit a character
+					// (do something with the character, such as applying damage)
+				}
+				//else if (HitActor->IsA(AStaticMeshActor::StaticClass()))
+				//{
+				//	// The trace hit a static mesh actor
+				//	// (do something with the static mesh actor, such as applying a force)
+				//}
 				UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
-				//Hit.GetActor()->TakeDamage(10.0f,);
-				//Hit.GetActor()->TakeDamage(AActor * DamageActor, float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser);
-				//Hit.GetActor()->TakeDamage(AActor * DamageActor, float Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser);
 				UGameplayStatics::ApplyDamage(Hit.GetActor(), 50.0f, Character->GetController(), Character, NULL);
 				
 			}
