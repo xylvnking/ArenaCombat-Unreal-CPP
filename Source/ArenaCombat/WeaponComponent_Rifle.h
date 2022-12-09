@@ -46,11 +46,11 @@ public:
 		FVector MuzzleOffset;
 
 	/** MappingContext */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputMappingContext* FireMappingContext;
 
 	/** Fire Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputAction* FireAction;
 
 	UWeaponComponent_Rifle();
@@ -91,11 +91,11 @@ public: // everything below this is what I added
 	The DefaultMappingContext contains the Look input action, so we need to declare it here to bind it and access the values
 	which are used to cancel the recoil timeline reversing.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputMappingContext* DefaultMappingContext;
 
 	/** Look Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputAction* LookAction;
 
 	/** Make the weapon Fire a HitScan */
@@ -136,18 +136,18 @@ protected:
 	UFUNCTION()
 		void StartVerticalRecoil(float Value);
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Advanbced Recoil | Curves")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Advanbced Recoil | Curves")
 		class UCurveFloat* VerticalCurve;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Advanbced Recoil | Curves")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Advanbced Recoil | Curves")
 		class UCurveFloat* HorizontalCurve;
 
 	// particle + vfx stuff
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AdvancedRecoil | FX")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "AdvancedRecoil | FX")
 		class UMaterialInterface* HitDecalMaterial;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AdvancedRecoil | FX")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "AdvancedRecoil | FX")
 		UNiagaraSystem* HitParticleFx;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AdvancedRecoil | FX")
