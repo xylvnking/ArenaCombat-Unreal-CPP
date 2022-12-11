@@ -145,7 +145,7 @@ void UWeaponComponent_Rifle::FireHitScan()
 				//AActor* HitActor = Hit.GetActor();
 				if (HitActor->IsA(ACharacter::StaticClass()))
 				{
-					UE_LOG(LogTemp, Log, TEXT("Trace hit AN ACTUAL ACTOR"));
+					//UE_LOG(LogTemp, Log, TEXT("Trace hit AN ACTUAL ACTOR"));
 					// The trace hit a character
 					// (do something with the character, such as applying damage)
 				}
@@ -154,9 +154,9 @@ void UWeaponComponent_Rifle::FireHitScan()
 				//	// The trace hit a static mesh actor
 				//	// (do something with the static mesh actor, such as applying a force)
 				//}
-				UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
+				//UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
 				UGameplayStatics::ApplyDamage(Hit.GetActor(), 50.0f, Character->GetController(), Character, NULL);
-				UE_LOG(LogTemp, Warning, TEXT("MyVector = %s"), *Hit.Location.ToString());
+				//UE_LOG(LogTemp, Warning, TEXT("MyVector = %s"), *Hit.Location.ToString());
 				HitScanImpactLocation = Hit.Location;
 
 
