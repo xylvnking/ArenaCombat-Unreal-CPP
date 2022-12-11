@@ -21,7 +21,6 @@ UHealthComponent::UHealthComponent()
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
 	AActor* MyOwner = GetOwner();
 	if (MyOwner)
 	{
@@ -41,7 +40,6 @@ void UHealthComponent::TakeDamage(AActor* DamageActor, float Damage, const UDama
 		return;
 		//Destroy();
 	}
-
 	Health = FMath::Clamp(Health - Damage, 0.0f, MaxHealth);
 	OnHealthChanged.Broadcast(this, Health, Damage, DamageType, InstigatedBy, DamageCauser);
 
